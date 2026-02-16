@@ -1,5 +1,7 @@
 import React from 'react';
-import { motion, HTMLMotionProps } from 'framer-motion';
+import { motion } from 'framer-motion';
+
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
 type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger';
 type ButtonSize = 'sm' | 'md' | 'lg';
