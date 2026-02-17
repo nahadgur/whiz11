@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Rocket, Brain, Trophy, ChevronRight, Sparkles, Target, Zap, Check, Star, Users, ArrowRight, ShieldCheck, Mail, HelpCircle, Gamepad2, GraduationCap, X, Lock, CheckCircle, Phone, User, Calendar } from 'lucide-react';
+import { Rocket, Brain, Trophy, ChevronRight, Sparkles, Target, Zap, Check, Star, Users, ArrowRight, ShieldCheck, Mail, HelpCircle, Gamepad2, GraduationCap, X, Lock, CheckCircle, Phone, User, Calendar, ChevronDown, MapPin, Menu } from 'lucide-react';
 import { Button } from './Button';
 
 interface LandingPageProps {
@@ -148,6 +148,241 @@ export const LeadGenModal = ({ isOpen, onClose, onSubmit }: { isOpen: boolean; o
   );
 };
 
+// ─── NavBar ───────────────────────────────────────────────────────────────────
+
+const SUBJECTS = [
+  { label: 'Mathematics',        desc: 'Arithmetic, algebra & geometry',         color: 'text-blue-600',   bg: 'bg-blue-50'   },
+  { label: 'English',            desc: 'Comprehension, grammar & vocabulary',     color: 'text-emerald-600', bg: 'bg-emerald-50' },
+  { label: 'Verbal Reasoning',   desc: 'Logic, codes & word relationships',       color: 'text-violet-600', bg: 'bg-violet-50' },
+  { label: 'Non-Verbal Reasoning', desc: 'Patterns, matrices & spatial thinking', color: 'text-amber-600',  bg: 'bg-amber-50'  },
+];
+
+const UK_CITIES = [
+  'Birmingham', 'Bristol', 'Edinburgh', 'Glasgow', 'Leeds',
+  'Leicester', 'Liverpool', 'London', 'Manchester', 'Newcastle',
+  'Nottingham', 'Oxford', 'Sheffield', 'Southampton', 'Cardiff',
+  'Brighton', 'Coventry', 'Reading', 'Bradford', 'Derby',
+];
+
+const NavBar: React.FC<{ onStart: () => void }> = ({ onStart }) => {
+  const [openDropdown, setOpenDropdown] = useState<'subjects' | 'locations' | null>(null);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileExpanded, setMobileExpanded] = useState<'subjects' | 'locations' | null>(null);
+
+  const close = () => setOpenDropdown(null);
+
+  return (
+    <>
+      <nav
+        className="w-full sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-sm"
+        onMouseLeave={close}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
+
+          {/* Logo */}
+          <div className="flex items-center gap-2 shrink-0">
+            <div className="w-9 h-9 bg-gradient-to-br from-indigo-500 to-violet-600 rounded-xl flex items-center justify-center text-white font-black text-base shadow-md">
+              11+
+            </div>
+            <span className="text-xl font-extrabold text-slate-800 tracking-tight leading-none">
+              Whiz<span className="text-indigo-600">Prep</span>
+            </span>
+          </div>
+
+          {/* Desktop links */}
+          <div className="hidden md:flex items-center gap-1 flex-1 justify-center">
+
+            {/* Subjects dropdown */}
+            <div className="relative" onMouseEnter={() => setOpenDropdown('subjects')}>
+              <button
+                className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-bold transition-colors ${
+                  openDropdown === 'subjects' ? 'bg-slate-100 text-indigo-600' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
+                }`}
+              >
+                Subjects
+                <ChevronDown size={15} className={`transition-transform duration-200 ${openDropdown === 'subjects' ? 'rotate-180' : ''}`} />
+              </button>
+
+              <AnimatePresence>
+                {openDropdown === 'subjects' && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 8, scale: 0.97 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 6, scale: 0.97 }}
+                    transition={{ duration: 0.15 }}
+                    className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-80 bg-white rounded-2xl shadow-xl border border-slate-100 p-2 overflow-hidden"
+                  >
+                    {SUBJECTS.map((s) => (
+                      <button
+                        key={s.label}
+                        onClick={() => { close(); onStart(); }}
+                        className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-slate-50 transition-colors text-left group"
+                      >
+                        <div className={`w-8 h-8 rounded-lg ${s.bg} flex items-center justify-center shrink-0`}>
+                          <div className={`w-2.5 h-2.5 rounded-full ${s.color.replace('text-', 'bg-')}`} />
+                        </div>
+                        <div>
+                          <div className="text-sm font-bold text-slate-800 group-hover:text-indigo-600 transition-colors">{s.label}</div>
+                          <div className="text-xs text-slate-400 font-medium">{s.desc}</div>
+                        </div>
+                        <ChevronRight size={14} className="ml-auto text-slate-300 group-hover:text-indigo-400 transition-colors shrink-0" />
+                      </button>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            {/* Blog */}
+            <button className="px-4 py-2 rounded-lg text-sm font-bold text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors">
+              Blog
+            </button>
+
+            {/* Locations dropdown */}
+            <div className="relative" onMouseEnter={() => setOpenDropdown('locations')}>
+              <button
+                className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-bold transition-colors ${
+                  openDropdown === 'locations' ? 'bg-slate-100 text-indigo-600' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
+                }`}
+              >
+                Locations
+                <ChevronDown size={15} className={`transition-transform duration-200 ${openDropdown === 'locations' ? 'rotate-180' : ''}`} />
+              </button>
+
+              <AnimatePresence>
+                {openDropdown === 'locations' && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 8, scale: 0.97 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 6, scale: 0.97 }}
+                    transition={{ duration: 0.15 }}
+                    className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-72 bg-white rounded-2xl shadow-xl border border-slate-100 p-3 overflow-hidden"
+                  >
+                    <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest px-2 mb-2">11+ Prep by City</p>
+                    <div className="grid grid-cols-2 gap-0.5">
+                      {UK_CITIES.map((city) => (
+                        <button
+                          key={city}
+                          onClick={() => { close(); onStart(); }}
+                          className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-indigo-50 hover:text-indigo-700 text-slate-600 text-sm font-semibold transition-colors text-left group"
+                        >
+                          <MapPin size={12} className="text-slate-300 group-hover:text-indigo-400 transition-colors shrink-0" />
+                          {city}
+                        </button>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          </div>
+
+          {/* Desktop CTA */}
+          <div className="hidden md:flex items-center gap-3 shrink-0">
+            <button onClick={onStart} className="text-sm font-bold text-slate-500 hover:text-indigo-600 transition-colors px-3 py-2">
+              Log in
+            </button>
+            <Button onClick={onStart} size="md">Get Started</Button>
+          </div>
+
+          {/* Mobile hamburger */}
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="md:hidden p-2 rounded-lg text-slate-500 hover:bg-slate-100 transition-colors"
+          >
+            {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
+
+        {/* Mobile menu */}
+        <AnimatePresence>
+          {mobileOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.2 }}
+              className="md:hidden overflow-hidden border-t border-slate-100 bg-white"
+            >
+              <div className="px-4 py-4 space-y-1">
+
+                {/* Mobile Subjects */}
+                <button
+                  onClick={() => setMobileExpanded(mobileExpanded === 'subjects' ? null : 'subjects')}
+                  className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-bold text-slate-700 hover:bg-slate-50 transition-colors"
+                >
+                  Subjects
+                  <ChevronDown size={15} className={`transition-transform ${mobileExpanded === 'subjects' ? 'rotate-180' : ''}`} />
+                </button>
+                <AnimatePresence>
+                  {mobileExpanded === 'subjects' && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      className="overflow-hidden pl-3 space-y-0.5"
+                    >
+                      {SUBJECTS.map((s) => (
+                        <button key={s.label} onClick={() => { setMobileOpen(false); onStart(); }}
+                          className="w-full text-left px-3 py-2 rounded-lg text-sm font-semibold text-slate-600 hover:text-indigo-600 hover:bg-indigo-50 transition-colors">
+                          {s.label}
+                        </button>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
+                {/* Mobile Blog */}
+                <button className="w-full flex items-center px-3 py-2.5 rounded-xl text-sm font-bold text-slate-700 hover:bg-slate-50 transition-colors">
+                  Blog
+                </button>
+
+                {/* Mobile Locations */}
+                <button
+                  onClick={() => setMobileExpanded(mobileExpanded === 'locations' ? null : 'locations')}
+                  className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-bold text-slate-700 hover:bg-slate-50 transition-colors"
+                >
+                  Locations
+                  <ChevronDown size={15} className={`transition-transform ${mobileExpanded === 'locations' ? 'rotate-180' : ''}`} />
+                </button>
+                <AnimatePresence>
+                  {mobileExpanded === 'locations' && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      className="overflow-hidden pl-3 grid grid-cols-2 gap-0.5"
+                    >
+                      {UK_CITIES.map((city) => (
+                        <button key={city} onClick={() => { setMobileOpen(false); onStart(); }}
+                          className="text-left px-3 py-2 rounded-lg text-sm font-semibold text-slate-600 hover:text-indigo-600 hover:bg-indigo-50 transition-colors">
+                          {city}
+                        </button>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
+                <div className="pt-2 border-t border-slate-100 flex flex-col gap-2">
+                  <button onClick={() => { setMobileOpen(false); onStart(); }}
+                    className="w-full py-2.5 text-sm font-bold text-slate-600 hover:text-indigo-600 transition-colors">
+                    Log in
+                  </button>
+                  <Button onClick={() => { setMobileOpen(false); onStart(); }} className="w-full justify-center">
+                    Get Started
+                  </Button>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </nav>
+
+    </>
+  );
+};
+
+// ─── LandingPage ──────────────────────────────────────────────────────────────
 export const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
 
   const containerVariants = {
@@ -168,20 +403,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
   return (
     <div className="min-h-screen flex flex-col bg-white overflow-x-hidden font-inter">
       {/* Navbar */}
-      <nav className="w-full p-4 sm:p-6 flex justify-between items-center max-w-7xl mx-auto w-full z-50 relative">
-        <div className="flex items-center gap-2 group cursor-default">
-          <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-indigo-500 to-violet-600 rounded-xl flex items-center justify-center text-white font-black text-lg shadow-md">
-            11+
-          </div>
-          <h1 className="text-xl sm:text-2xl font-extrabold text-slate-800 tracking-tight leading-none">
-            Whiz<span className="text-indigo-600">Prep</span>
-          </h1>
-        </div>
-        <div className="hidden sm:flex items-center gap-4">
-            <button onClick={onStart} className="text-slate-600 font-bold hover:text-indigo-600 transition-colors">Log in</button>
-            <Button onClick={onStart} size="md">Get Started</Button>
-        </div>
-      </nav>
+      <NavBar onStart={onStart} />
 
       {/* Hero Section (White) */}
       <div className="relative pt-8 pb-16 sm:pt-16 sm:pb-24 px-4 sm:px-6 max-w-7xl mx-auto w-full">
