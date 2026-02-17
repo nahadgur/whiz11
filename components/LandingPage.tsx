@@ -203,7 +203,8 @@ const NavBar: React.FC<{ onStart: () => void }> = ({ onStart }) => {
                     transition={{ duration: 0.15 }}
                     className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-80 bg-white rounded-2xl shadow-xl border border-slate-100 p-2 overflow-hidden"
                   >
-                    {SUBJECTS.map((s) => (                      <Link
+                    {SUBJECTS.map((s) => (
+                      <Link
                         key={s.slug}
                         href={`/subjects/${s.slug}`}
                         onClick={close}
@@ -223,6 +224,22 @@ const NavBar: React.FC<{ onStart: () => void }> = ({ onStart }) => {
                 )}
               </AnimatePresence>
             </div>
+
+            {/* Mock Tests */}
+            <Link
+              href="/mock-tests"
+              className="px-4 py-2 rounded-lg text-sm font-bold text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors"
+            >
+              Mock Tests
+            </Link>
+
+            {/* Exam Papers */}
+            <Link
+              href="/exam-papers"
+              className="px-4 py-2 rounded-lg text-sm font-bold text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors"
+            >
+              Exam Papers
+            </Link>
 
             {/* Blog */}
             <button className="px-4 py-2 rounded-lg text-sm font-bold text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors">
@@ -251,7 +268,8 @@ const NavBar: React.FC<{ onStart: () => void }> = ({ onStart }) => {
                   >
                     <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest px-2 mb-2">11+ Prep by City</p>
                     <div className="grid grid-cols-2 gap-0.5">
-                      {UK_CITIES.map((city) => (                        <Link
+                      {UK_CITIES.map((city) => (
+                        <Link
                           key={city.slug}
                           href={`/locations/${city.slug}`}
                           onClick={close}
@@ -313,7 +331,8 @@ const NavBar: React.FC<{ onStart: () => void }> = ({ onStart }) => {
                       exit={{ opacity: 0, height: 0 }}
                       className="overflow-hidden pl-3 space-y-0.5"
                     >
-                      {SUBJECTS.map((s) => (                        <Link
+                      {SUBJECTS.map((s) => (
+                        <Link
                           key={s.slug}
                           href={`/subjects/${s.slug}`}
                           onClick={() => setMobileOpen(false)}
@@ -325,6 +344,24 @@ const NavBar: React.FC<{ onStart: () => void }> = ({ onStart }) => {
                     </motion.div>
                   )}
                 </AnimatePresence>
+
+                {/* Mobile Mock Tests */}
+                <Link
+                  href="/mock-tests"
+                  onClick={() => setMobileOpen(false)}
+                  className="w-full flex items-center px-3 py-2.5 rounded-xl text-sm font-bold text-slate-700 hover:bg-slate-50 transition-colors"
+                >
+                  Mock Tests
+                </Link>
+
+                {/* Mobile Exam Papers */}
+                <Link
+                  href="/exam-papers"
+                  onClick={() => setMobileOpen(false)}
+                  className="w-full flex items-center px-3 py-2.5 rounded-xl text-sm font-bold text-slate-700 hover:bg-slate-50 transition-colors"
+                >
+                  Exam Papers
+                </Link>
 
                 {/* Mobile Blog */}
                 <button className="w-full flex items-center px-3 py-2.5 rounded-xl text-sm font-bold text-slate-700 hover:bg-slate-50 transition-colors">
@@ -347,7 +384,8 @@ const NavBar: React.FC<{ onStart: () => void }> = ({ onStart }) => {
                       exit={{ opacity: 0, height: 0 }}
                       className="overflow-hidden pl-3 grid grid-cols-2 gap-0.5"
                     >
-                      {UK_CITIES.map((city) => (                        <Link
+                      {UK_CITIES.map((city) => (
+                        <Link
                           key={city.slug}
                           href={`/locations/${city.slug}`}
                           onClick={() => setMobileOpen(false)}
@@ -361,11 +399,22 @@ const NavBar: React.FC<{ onStart: () => void }> = ({ onStart }) => {
                 </AnimatePresence>
 
                 <div className="pt-2 border-t border-slate-100 flex flex-col gap-2">
-                  <button onClick={() => { setMobileOpen(false); onStart(); }}
-                    className="w-full py-2.5 text-sm font-bold text-slate-600 hover:text-indigo-600 transition-colors">
+                  <button
+                    onClick={() => {
+                      setMobileOpen(false);
+                      onStart();
+                    }}
+                    className="w-full py-2.5 text-sm font-bold text-slate-600 hover:text-indigo-600 transition-colors"
+                  >
                     Log in
                   </button>
-                  <Button onClick={() => { setMobileOpen(false); onStart(); }} className="w-full justify-center">
+                  <Button
+                    onClick={() => {
+                      setMobileOpen(false);
+                      onStart();
+                    }}
+                    className="w-full justify-center"
+                  >
                     Get Started
                   </Button>
                 </div>
@@ -374,7 +423,6 @@ const NavBar: React.FC<{ onStart: () => void }> = ({ onStart }) => {
           )}
         </AnimatePresence>
       </nav>
-
     </>
   );
 };
