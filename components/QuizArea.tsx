@@ -194,7 +194,8 @@ export const QuizArea: React.FC<QuizAreaProps> = ({ subject, schoolType, mode, q
            <div className="flex items-center flex-wrap gap-2 mb-1">
              <span className="text-xs font-black text-indigo-400 uppercase tracking-widest">{subject}</span>
              {mode === 'practice' && topic && (
-               <span className="text-xs font-bold bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full truncate max-w-[150px]">{topic}</span>
+               <span className="text-xs font-bold bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full whitespace-nowrap">
+{topic}</span>
              )}
            </div>
            <span className="text-slate-800 font-extrabold text-lg">Question {state.currentIndex + 1} <span className="text-slate-300">/ {state.questions.length}</span></span>
