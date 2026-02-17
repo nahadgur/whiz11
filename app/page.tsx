@@ -19,9 +19,9 @@ import confetti from 'canvas-confetti';
 const INITIAL_BADGES: Badge[] = [
   { id: '1', name: 'First Steps', description: 'Complete your first quiz', iconName: 'rocket', color: 'blue', unlocked: false },
   { id: '2', name: 'High Five', description: 'Complete 5 quizzes', iconName: 'star', color: 'yellow', unlocked: false },
-  { id: '3', name: 'Maths Whiz', description: 'Score 100% in Maths', iconName: 'brain', color: 'purple', unlocked: false },
-  { id: '4', name: 'Speedster', description: 'Finish a quiz in under 30s', iconName: 'zap', color: 'orange', unlocked: false },
-  { id: '5', name: 'Champion', description: 'Reach 1000 Stars', iconName: 'trophy', color: 'green', unlocked: false },
+  { id: '3', name: 'Maths Whizz', description: 'Get full marks in Maths', iconName: 'brain', color: 'purple', unlocked: false },
+  { id: '4', name: 'Speedster', description: 'Finish an exam quiz in under 30 seconds', iconName: 'zap', color: 'orange', unlocked: false },
+  { id: '5', name: 'Champion', description: 'Reach 1,000 Stars', iconName: 'trophy', color: 'green', unlocked: false },
 ];
 
 const THEME_STYLES: Record<Theme, string> = {
