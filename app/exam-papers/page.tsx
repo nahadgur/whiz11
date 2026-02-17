@@ -10,7 +10,7 @@ import { SiteNav } from '@/components/SiteNav';
 import { SiteFooter } from '@/components/SiteFooter';
 
 export const metadata: Metadata = {
-  title: 'Free 11+ Exam Papers – Download PDF Practice Papers | WhizPrep',
+  title: 'Free 11+ Exam Papers – Download PDF Practice Papers | 11PlusExamPapers.com',
   description:
     'Download free 11+ practice exam papers for Maths, English, Verbal Reasoning and Non-Verbal Reasoning. Printable PDFs with full answers — no sign-up needed.',
 };
@@ -153,42 +153,42 @@ const FEATURES = [
     icon: CheckCircle,
     title: 'Detailed Answer Sheets',
     desc: 'Every paper comes with a full worked-answer PDF so children and parents can see exactly where marks are won.',
-    color: 'text-emerald-500',
+    color: 'text-emerald-600',
     bg: 'bg-emerald-50',
   },
   {
     icon: Tag,
     title: 'Topic-Tagged Questions',
     desc: 'Each question is labelled by topic, making it easy to identify and plug gaps in knowledge.',
-    color: 'text-violet-500',
+    color: 'text-violet-600',
     bg: 'bg-violet-50',
   },
   {
     icon: Clock,
     title: 'Timed Exam Conditions',
     desc: 'Papers are formatted to mirror real 11+ timings — helping your child practise under proper exam conditions.',
-    color: 'text-blue-500',
+    color: 'text-blue-600',
     bg: 'bg-blue-50',
   },
   {
     icon: Star,
     title: 'Difficulty Graded',
-    desc: 'Beginner, Intermediate and Advanced tiers let you match practice to your child\'s current level.',
-    color: 'text-amber-500',
+    desc: "Beginner, Intermediate and Advanced tiers let you match practice to your child's current level.",
+    color: 'text-amber-600',
     bg: 'bg-amber-50',
   },
   {
     icon: Shield,
     title: 'GL & CEM Aligned',
     desc: 'Papers are designed to match the question styles and formats used by GL Assessment and CEM.',
-    color: 'text-slate-500',
+    color: 'text-slate-600',
     bg: 'bg-slate-100',
   },
   {
     icon: Zap,
     title: 'Printable PDFs',
     desc: 'Clean, printer-friendly layouts — no wasted ink, no awkward page breaks.',
-    color: 'text-indigo-500',
+    color: 'text-indigo-600',
     bg: 'bg-indigo-50',
   },
 ];
@@ -211,7 +211,7 @@ const FAQS = [
     a: 'Every paper set includes a full worked-answer sheet as a separate PDF download.',
   },
   {
-    q: 'How do the PDF papers complement the WhizPrep app?',
+    q: 'How do the PDF papers complement the 11 Plus Exam Papers app?',
     a: 'The papers are great for timed, paper-based practice — exactly like the real exam. Use them alongside our interactive practice questions for a complete preparation plan.',
   },
   {
@@ -224,7 +224,7 @@ const FAQS = [
 
 function PaperCard({ paper }: { paper: typeof PAPER_SETS[0] }) {
   return (
-    <div className={`relative bg-white rounded-2xl border ${paper.border} shadow-sm hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5 overflow-hidden group flex flex-col`}>
+    <div className={`relative bg-white rounded-2xl border-2 ${paper.border} hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 overflow-hidden group flex flex-col`}>
       {/* Tag badge */}
       {paper.tag && (
         <div className={`absolute top-4 right-4 px-2.5 py-1 rounded-full text-xs font-black uppercase tracking-wide ${paper.tagColor}`}>
@@ -271,7 +271,7 @@ function PaperCard({ paper }: { paper: typeof PAPER_SETS[0] }) {
         </div>
       </div>
 
-      {/* CTA — free download */}
+      {/* CTA */}
       <div className="px-6 pb-6">
         <Link
           href={`/exam-papers/${paper.slug}`}
@@ -296,13 +296,13 @@ export default function ExamPapersPage() {
       <SiteNav />
 
       <main className="bg-white">
+
         {/* ── Hero ── */}
         <section className="relative overflow-hidden bg-gradient-to-br from-indigo-50 via-white to-violet-50 pt-16 pb-20 px-4">
-          {/* Decorative blobs */}
           <div className="pointer-events-none absolute -top-24 -right-24 w-96 h-96 bg-violet-200 opacity-20 rounded-full blur-3xl" />
           <div className="pointer-events-none absolute -bottom-12 -left-12 w-72 h-72 bg-indigo-200 opacity-20 rounded-full blur-3xl" />
 
-          <div className="max-w-4xl mx-auto text-center relative">
+          <div className="max-w-4xl mx-auto text-center relative z-10">
             {/* Eyebrow */}
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-100 text-indigo-700 rounded-full text-xs font-black uppercase tracking-widest mb-6">
               <Download size={12} />
@@ -340,14 +340,14 @@ export default function ExamPapersPage() {
         </section>
 
         {/* ── Paper grid ── */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 py-16">
+        <section id="papers" className="max-w-7xl mx-auto px-4 sm:px-6 py-16">
           <div className="flex items-end justify-between mb-10">
             <div>
               <h2 className="text-2xl sm:text-3xl font-black text-slate-900">All Practice Paper Sets</h2>
               <p className="text-slate-500 mt-1">Click any set to see individual papers and download them.</p>
             </div>
             <div className="hidden sm:flex items-center gap-2 text-sm text-slate-500 font-semibold">
-              <FileText size={16} className="text-indigo-400" />
+              <FileText size={16} className="text-indigo-500" />
               {PAPER_SETS.reduce((a, b) => a + b.papers, 0)} papers total
             </div>
           </div>
@@ -406,7 +406,7 @@ export default function ExamPapersPage() {
                   >
                     Try the practice app <ChevronRight size={16} />
                   </Link>
-                  <div className="flex items-center gap-4 text-white/80 text-sm font-semibold">
+                  <div className="flex flex-wrap items-center gap-4 text-white/80 text-sm font-semibold">
                     <span className="flex items-center gap-1.5"><Users size={14} />Trusted by 12,000+ families</span>
                     <span className="flex items-center gap-1.5"><TrendingUp size={14} />Avg. 18% score improvement</span>
                   </div>
@@ -415,10 +415,10 @@ export default function ExamPapersPage() {
               {/* Decorative icon grid */}
               <div className="hidden lg:grid grid-cols-2 gap-3 shrink-0">
                 {[
-                  { icon: Calculator, label: 'Maths', color: 'bg-blue-400/30' },
-                  { icon: BookOpen, label: 'English', color: 'bg-emerald-400/30' },
-                  { icon: BrainCircuit, label: 'VR', color: 'bg-violet-400/30' },
-                  { icon: Shapes, label: 'NVR', color: 'bg-amber-400/30' },
+                  { icon: Calculator, label: 'Maths',   color: 'bg-blue-400/30'    },
+                  { icon: BookOpen,   label: 'English', color: 'bg-emerald-400/30' },
+                  { icon: BrainCircuit, label: 'VR',    color: 'bg-violet-400/30'  },
+                  { icon: Shapes,     label: 'NVR',     color: 'bg-amber-400/30'   },
                 ].map(({ icon: Icon, label, color }) => (
                   <div key={label} className={`w-20 h-20 ${color} rounded-2xl flex flex-col items-center justify-center gap-1.5 backdrop-blur-sm`}>
                     <Icon size={24} className="text-white" />
@@ -469,6 +469,7 @@ export default function ExamPapersPage() {
             </Link>
           </div>
         </section>
+
       </main>
 
       <SiteFooter />
