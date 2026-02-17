@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Rocket, Brain, Trophy, ChevronRight, Sparkles, Target, Zap, Check, Star, Users, ArrowRight, ShieldCheck, Mail, HelpCircle, Gamepad2, GraduationCap, X, Lock, CheckCircle, Phone, User, Calendar, ChevronDown, MapPin, Menu } from 'lucide-react';
 import { Button } from './Button';
+import { SUBJECTS as SITE_SUBJECTS, UK_CITIES as SITE_CITIES } from '@/lib/siteData';
 
 interface LandingPageProps {
   onStart: () => void;
@@ -150,19 +152,8 @@ export const LeadGenModal = ({ isOpen, onClose, onSubmit }: { isOpen: boolean; o
 
 // ─── NavBar ───────────────────────────────────────────────────────────────────
 
-const SUBJECTS = [
-  { label: 'Mathematics',        desc: 'Arithmetic, algebra & geometry',         color: 'text-blue-600',   bg: 'bg-blue-50'   },
-  { label: 'English',            desc: 'Comprehension, grammar & vocabulary',     color: 'text-emerald-600', bg: 'bg-emerald-50' },
-  { label: 'Verbal Reasoning',   desc: 'Logic, codes & word relationships',       color: 'text-violet-600', bg: 'bg-violet-50' },
-  { label: 'Non-Verbal Reasoning', desc: 'Patterns, matrices & spatial thinking', color: 'text-amber-600',  bg: 'bg-amber-50'  },
-];
-
-const UK_CITIES = [
-  'Birmingham', 'Bristol', 'Edinburgh', 'Glasgow', 'Leeds',
-  'Leicester', 'Liverpool', 'London', 'Manchester', 'Newcastle',
-  'Nottingham', 'Oxford', 'Sheffield', 'Southampton', 'Cardiff',
-  'Brighton', 'Coventry', 'Reading', 'Bradford', 'Derby',
-];
+const SUBJECTS = SITE_SUBJECTS;
+const UK_CITIES = SITE_CITIES;
 
 const NavBar: React.FC<{ onStart: () => void }> = ({ onStart }) => {
   const [openDropdown, setOpenDropdown] = useState<'subjects' | 'locations' | null>(null);
@@ -212,21 +203,21 @@ const NavBar: React.FC<{ onStart: () => void }> = ({ onStart }) => {
                     transition={{ duration: 0.15 }}
                     className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-80 bg-white rounded-2xl shadow-xl border border-slate-100 p-2 overflow-hidden"
                   >
-                    {SUBJECTS.map((s) => (
-                      <button
-                        key={s.label}
-                        onClick={() => { close(); onStart(); }}
+                    {SUBJECTS.map((s) => (                      <Link
+                        key={s.slug}
+                        href={`/subjects/${s.slug}`}
+                        onClick={close}
                         className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-slate-50 transition-colors text-left group"
                       >
                         <div className={`w-8 h-8 rounded-lg ${s.bg} flex items-center justify-center shrink-0`}>
-                          <div className={`w-2.5 h-2.5 rounded-full ${s.color.replace('text-', 'bg-')}`} />
+                          <div className={`w-2.5 h-2.5 rounded-full ${s.dot}`} />
                         </div>
                         <div>
                           <div className="text-sm font-bold text-slate-800 group-hover:text-indigo-600 transition-colors">{s.label}</div>
                           <div className="text-xs text-slate-400 font-medium">{s.desc}</div>
                         </div>
                         <ChevronRight size={14} className="ml-auto text-slate-300 group-hover:text-indigo-400 transition-colors shrink-0" />
-                      </button>
+                      </Link>
                     ))}
                   </motion.div>
                 )}
@@ -260,15 +251,15 @@ const NavBar: React.FC<{ onStart: () => void }> = ({ onStart }) => {
                   >
                     <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest px-2 mb-2">11+ Prep by City</p>
                     <div className="grid grid-cols-2 gap-0.5">
-                      {UK_CITIES.map((city) => (
-                        <button
-                          key={city}
-                          onClick={() => { close(); onStart(); }}
+                      {UK_CITIES.map((city) => (                        <Link
+                          key={city.slug}
+                          href={`/locations/${city.slug}`}
+                          onClick={close}
                           className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-indigo-50 hover:text-indigo-700 text-slate-600 text-sm font-semibold transition-colors text-left group"
                         >
                           <MapPin size={12} className="text-slate-300 group-hover:text-indigo-400 transition-colors shrink-0" />
-                          {city}
-                        </button>
+                          {city.label}
+                        </Link>
                       ))}
                     </div>
                   </motion.div>
@@ -322,11 +313,14 @@ const NavBar: React.FC<{ onStart: () => void }> = ({ onStart }) => {
                       exit={{ opacity: 0, height: 0 }}
                       className="overflow-hidden pl-3 space-y-0.5"
                     >
-                      {SUBJECTS.map((s) => (
-                        <button key={s.label} onClick={() => { setMobileOpen(false); onStart(); }}
-                          className="w-full text-left px-3 py-2 rounded-lg text-sm font-semibold text-slate-600 hover:text-indigo-600 hover:bg-indigo-50 transition-colors">
+                      {SUBJECTS.map((s) => (                        <Link
+                          key={s.slug}
+                          href={`/subjects/${s.slug}`}
+                          onClick={() => setMobileOpen(false)}
+                          className="w-full text-left px-3 py-2 rounded-lg text-sm font-semibold text-slate-600 hover:text-indigo-600 hover:bg-indigo-50 transition-colors"
+                        >
                           {s.label}
-                        </button>
+                        </Link>
                       ))}
                     </motion.div>
                   )}
@@ -353,11 +347,14 @@ const NavBar: React.FC<{ onStart: () => void }> = ({ onStart }) => {
                       exit={{ opacity: 0, height: 0 }}
                       className="overflow-hidden pl-3 grid grid-cols-2 gap-0.5"
                     >
-                      {UK_CITIES.map((city) => (
-                        <button key={city} onClick={() => { setMobileOpen(false); onStart(); }}
-                          className="text-left px-3 py-2 rounded-lg text-sm font-semibold text-slate-600 hover:text-indigo-600 hover:bg-indigo-50 transition-colors">
-                          {city}
-                        </button>
+                      {UK_CITIES.map((city) => (                        <Link
+                          key={city.slug}
+                          href={`/locations/${city.slug}`}
+                          onClick={() => setMobileOpen(false)}
+                          className="text-left px-3 py-2 rounded-lg text-sm font-semibold text-slate-600 hover:text-indigo-600 hover:bg-indigo-50 transition-colors"
+                        >
+                          {city.label}
+                        </Link>
                       ))}
                     </motion.div>
                   )}
