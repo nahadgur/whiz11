@@ -3,9 +3,31 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ArrowRight, Check, Star, MapPin, ChevronRight, CheckCircle, School, Building2 } from 'lucide-react';
+import { ArrowRight, Check, Star, MapPin, ChevronRight, CheckCircle, School, Building2, Zap } from 'lucide-react';
 import { SiteNav, LeadGenModal } from '@/components/SiteNav';
 import { SiteFooter } from '@/components/SiteFooter';
+
+const HERO_IMAGES = [
+  'https://images.pexels.com/photos/3768122/pexels-photo-3768122.jpeg',  // glasses girl reading
+  'https://images.pexels.com/photos/5303553/pexels-photo-5303553.jpeg',  // boy reading a book
+  'https://images.pexels.com/photos/2781814/pexels-photo-2781814.jpeg',  // books pencils blurred
+  'https://images.pexels.com/photos/7520846/pexels-photo-7520846.jpeg',  // writing boy looking at camera
+  'https://images.pexels.com/photos/5211478/pexels-photo-5211478.jpeg',  // smiling boy with school bag
+  'https://images.pexels.com/photos/3855553/pexels-photo-3855553.jpeg',  // girl writing in colour pencil
+  'https://images.pexels.com/photos/7054749/pexels-photo-7054749.jpeg',  // clean notebook study items
+  'https://images.pexels.com/photos/6958563/pexels-photo-6958563.jpeg',  // boy with glasses reading math
+  'https://images.pexels.com/photos/4144221/pexels-photo-4144221.jpeg',  // girl taking notes at computer
+  'https://images.pexels.com/photos/8923577/pexels-photo-8923577.jpeg',  // girl at microscope
+  'https://images.pexels.com/photos/7722919/pexels-photo-7722919.jpeg',  // anatomy pieces stethoscope
+  'https://images.pexels.com/photos/7692464/pexels-photo-7692464.jpeg',  // boy with calculator
+];
+
+// Pick a consistent, unique image per city slug using a simple hash
+function getCityImage(slug: string): string {
+  let hash = 0;
+  for (let i = 0; i < slug.length; i++) hash = (hash * 31 + slug.charCodeAt(i)) % HERO_IMAGES.length;
+  return HERO_IMAGES[hash];
+}
 
 const CITY_CONTENT: Record<string, { grammar?: string[]; independent?: string[]; blurb: string }> = {
   london: {
@@ -38,31 +60,90 @@ export default function LocationPageClient({ city, subjects, allCities }: { city
   const [showModal, setShowModal] = useState(false);
   const content = CITY_CONTENT[city.slug] || CITY_CONTENT.default;
   const handleModalSubmit = () => { setShowModal(false); window.location.href = '/'; };
+  const heroImg = getCityImage(city.slug);
 
   return (
     <div className="min-h-screen bg-white">
       <SiteNav ctaLabel="Start Free" ctaHref="/" />
 
+      {/* ─── Hero ─────────────────────────────────────────────────────────── */}
       <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-950 pt-20 pb-28 px-4 sm:px-6">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-indigo-600 rounded-full blur-[150px] opacity-10" />
         </div>
-        <div className="relative max-w-5xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-bold mb-6 bg-white/10 text-white border border-white/20">
-            <MapPin size={14} /> {city.label}
-          </div>
-          <h1 className="text-4xl sm:text-6xl font-black text-white tracking-tight mb-6 leading-[1.1]">
-            11+ Preparation in <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 to-violet-300">{city.label}</span>
-          </h1>
-          <p className="text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto mb-6 leading-relaxed">{content.blurb}</p>
-          <p className="text-slate-400 max-w-xl mx-auto mb-10 text-base">Practise with hundreds of free 11+ questions across Maths, English, Verbal and Non-Verbal Reasoning — aligned to the schools in {city.label} and surrounding areas.</p>
-          <button onClick={() => setShowModal(true)} className="inline-flex items-center gap-3 px-8 py-4 bg-white text-slate-900 font-black text-lg rounded-2xl shadow-2xl hover:scale-105 transition-all">
-            Start free practice <ArrowRight size={20} />
-          </button>
-          <div className="mt-5 flex flex-wrap justify-center gap-5 text-sm font-semibold text-slate-400">
-            <span className="flex items-center gap-1.5"><Check size={14} className="text-emerald-400" /> No card needed</span>
-            <span className="flex items-center gap-1.5"><Check size={14} className="text-emerald-400" /> Free questions</span>
-            <span className="flex items-center gap-1.5"><Check size={14} className="text-emerald-400" /> All 4 subjects</span>
+
+        <div className="relative max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+            {/* Left – text */}
+            <div className="text-center lg:text-left">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-bold mb-6 bg-white/10 text-white border border-white/20">
+                <MapPin size={14} /> {city.label}
+              </div>
+              <h1 className="text-4xl sm:text-6xl font-black text-white tracking-tight mb-6 leading-[1.1]">
+                11+ Preparation in{' '}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 to-violet-300">
+                  {city.label}
+                </span>
+              </h1>
+              <p className="text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto lg:mx-0 mb-6 leading-relaxed">
+                {content.blurb}
+              </p>
+              <p className="text-slate-400 max-w-xl mx-auto lg:mx-0 mb-10 text-base">
+                Practise with hundreds of free 11+ questions across Maths, English, Verbal and Non-Verbal Reasoning — aligned to the schools in {city.label} and surrounding areas.
+              </p>
+              <button
+                onClick={() => setShowModal(true)}
+                className="inline-flex items-center gap-3 px-8 py-4 bg-white text-slate-900 font-black text-lg rounded-2xl shadow-2xl hover:scale-105 transition-all"
+              >
+                Start free practice <ArrowRight size={20} />
+              </button>
+              <div className="mt-5 flex flex-wrap justify-center lg:justify-start gap-5 text-sm font-semibold text-slate-400">
+                <span className="flex items-center gap-1.5"><Check size={14} className="text-emerald-400" /> No card needed</span>
+                <span className="flex items-center gap-1.5"><Check size={14} className="text-emerald-400" /> Free questions</span>
+                <span className="flex items-center gap-1.5"><Check size={14} className="text-emerald-400" /> All 4 subjects</span>
+              </div>
+            </div>
+
+            {/* Right – hero image (landing-page style) */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, x: 20 }}
+              animate={{ opacity: 1, scale: 1, x: 0 }}
+              transition={{ delay: 0.2, duration: 0.8 }}
+              className="relative hidden lg:block"
+            >
+              {/* Decorative blobs */}
+              <div className="absolute top-10 -right-10 w-72 h-72 bg-violet-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob" />
+              <div className="absolute -bottom-10 right-20 w-72 h-72 bg-indigo-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000" />
+              <div className="absolute top-40 left-10 w-72 h-72 bg-sky-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000" />
+
+              {/* Image card */}
+              <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl shadow-indigo-500/30 border-4 border-white transform rotate-2 hover:rotate-0 transition-transform duration-500 hover:scale-[1.02]">
+                <img
+                  src={heroImg}
+                  alt={`11+ exam preparation in ${city.label}`}
+                  className="w-full h-[480px] object-cover"
+                />
+                {/* Floating badge – bottom left */}
+                <div className="absolute bottom-6 left-6 bg-white/90 backdrop-blur-md p-4 rounded-2xl shadow-lg border border-white/50 flex items-center gap-3 animate-bounce-slow">
+                  <div className="w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600">
+                    <Check size={20} strokeWidth={3} />
+                  </div>
+                  <div>
+                    <p className="font-bold text-slate-800 text-sm">Free practice</p>
+                    <p className="text-emerald-600 text-xs font-bold">No card needed</p>
+                  </div>
+                </div>
+                {/* Floating badge – top right */}
+                <div className="absolute top-6 right-6 bg-white/90 backdrop-blur-md p-3 rounded-2xl shadow-lg border border-white/50 animate-bounce-slow animation-delay-2000">
+                  <div className="flex items-center gap-1 text-amber-500 font-bold text-sm">
+                    <Zap size={16} fill="currentColor" />
+                    <span>4 subjects</span>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
           </div>
         </div>
       </section>
