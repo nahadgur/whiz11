@@ -178,7 +178,7 @@ export default function Home() {
 
   // Show landing page first
   if (showLanding) {
-    return <LandingPage onStart={() => setShowLanding(false)} />;
+    return <LandingPage onStart={() => { setShowLanding(false); setScreen('onboarding'); }} />;
   }
 
   return (
