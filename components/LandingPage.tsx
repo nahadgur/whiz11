@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Rocket, Brain, Trophy, ChevronRight, Sparkles, Target, Zap, Check, Star, Users, ArrowRight, ShieldCheck, Mail, HelpCircle, Gamepad2, GraduationCap, X, Lock, CheckCircle, Phone, User, Calendar } from 'lucide-react';
@@ -55,13 +54,13 @@ const LeadGenModal = ({ isOpen, onClose, onSubmit }: { isOpen: boolean; onClose:
                   <div className="w-14 h-14 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-3">
                     <Rocket size={28} />
                   </div>
-                  <h3 className="text-2xl font-black text-slate-900 mb-1">Unlock Your Free Trial</h3>
-                  <p className="text-slate-500 text-sm">Join 10,000+ parents helping their kids ace the 11+.</p>
+                  <h3 className="text-2xl font-black text-slate-900 mb-1">Unlock your free trial</h3>
+                  <p className="text-slate-500 text-sm">Join thousands of UK parents supporting their child’s 11+ preparation.</p>
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide">Parent's Email</label>
+                    <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide">Parent’s email</label>
                     <div className="relative">
                       <Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
                       <input 
@@ -69,7 +68,7 @@ const LeadGenModal = ({ isOpen, onClose, onSubmit }: { isOpen: boolean; onClose:
                         name="email"
                         required
                         className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none font-medium text-slate-800"
-                        placeholder="parent@example.com"
+                        placeholder="name@example.com"
                         value={formData.email}
                         onChange={handleChange}
                       />
@@ -77,7 +76,7 @@ const LeadGenModal = ({ isOpen, onClose, onSubmit }: { isOpen: boolean; onClose:
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide">Phone Number</label>
+                    <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide">Phone number</label>
                     <div className="relative">
                       <Phone className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
                       <input 
@@ -85,7 +84,7 @@ const LeadGenModal = ({ isOpen, onClose, onSubmit }: { isOpen: boolean; onClose:
                         name="phone"
                         required
                         className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none font-medium text-slate-800"
-                        placeholder="07700 900000"
+                        placeholder="07xxx xxxxxx"
                         value={formData.phone}
                         onChange={handleChange}
                       />
@@ -94,7 +93,7 @@ const LeadGenModal = ({ isOpen, onClose, onSubmit }: { isOpen: boolean; onClose:
 
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                        <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide">Child's Name</label>
+                        <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide">Child’s name</label>
                         <div className="relative">
                         <User className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
                         <input 
@@ -109,7 +108,7 @@ const LeadGenModal = ({ isOpen, onClose, onSubmit }: { isOpen: boolean; onClose:
                         </div>
                     </div>
                     <div>
-                        <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide">Child's Year</label>
+                        <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide">Child’s year group</label>
                         <div className="relative">
                             <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
                             <select
@@ -119,7 +118,7 @@ const LeadGenModal = ({ isOpen, onClose, onSubmit }: { isOpen: boolean; onClose:
                                 value={formData.childYear}
                                 onChange={handleChange}
                             >
-                                <option value="" disabled>Select Year</option>
+                                <option value="" disabled>Select year group</option>
                                 <option value="Year 3">Year 3</option>
                                 <option value="Year 4">Year 4</option>
                                 <option value="Year 5">Year 5</option>
@@ -133,11 +132,11 @@ const LeadGenModal = ({ isOpen, onClose, onSubmit }: { isOpen: boolean; onClose:
                     type="submit"
                     className="w-full py-4 mt-2 bg-gradient-to-r from-indigo-600 to-violet-600 text-white font-bold text-lg rounded-xl shadow-lg shadow-indigo-200 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2"
                   >
-                    Start Practicing <ArrowRight size={20} />
+                    Start practising <ArrowRight size={20} />
                   </button>
 
                   <p className="text-xs text-center text-slate-400 mt-4 flex items-center justify-center gap-1">
-                    <Lock size={12} /> Your details are safe with us.
+                    <Lock size={12} /> Your details are kept private.
                   </p>
                 </form>
               </div>
@@ -180,7 +179,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
           </h1>
         </div>
         <div className="hidden sm:flex items-center gap-4">
-            <button onClick={() => setShowModal(true)} className="text-slate-600 font-bold hover:text-indigo-600 transition-colors">Log In</button>
+            <button onClick={() => setShowModal(true)} className="text-slate-600 font-bold hover:text-indigo-600 transition-colors">Log in</button>
             <Button onClick={() => setShowModal(true)} size="md">Get Started</Button>
         </div>
       </nav>
@@ -197,15 +196,15 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
               className="flex flex-col items-center lg:items-start text-center lg:text-left z-10"
             >
               <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-50 rounded-full text-indigo-700 font-bold text-sm mb-6 border border-indigo-100 shadow-sm">
-                <Sparkles size={16} /> The #1 AI Tutor for Kids
+                <Sparkles size={16} /> AI-powered 11+ tutor for children
               </motion.div>
 
               <motion.h1 variants={itemVariants} className="text-5xl sm:text-7xl font-black text-slate-900 tracking-tight mb-6 leading-[1.1]">
-                Ace the <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">11+ Exam</span> with Confidence.
+                11+ <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">exam preparation</span> your child can enjoy.
               </motion.h1>
 
               <motion.p variants={itemVariants} className="text-lg sm:text-xl text-slate-500 font-medium mb-10 max-w-xl leading-relaxed">
-                Fun, interactive prep for Grammar and Private schools. Master Maths, English, and Reasoning while earning rewards!
+                Fun, interactive 11+ practice for grammar and independent schools. Build confidence in Maths, English, Verbal and Non-Verbal Reasoning — and earn rewards along the way.
               </motion.p>
 
               {/* Call to Action Button */}
@@ -221,14 +220,14 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
                     <span className="absolute inset-0 rounded-full ring-2 ring-white/30 animate-pulse"></span>
                     
                     <span className="relative flex items-center gap-2">
-                        Start Free Trial <ArrowRight className="w-6 h-6" strokeWidth={3} />
+                        Start free trial <ArrowRight className="w-6 h-6" strokeWidth={3} />
                     </span>
                 </button>
                 
                 {/* Benefits */}
                 <div className="mt-6 flex flex-wrap justify-center lg:justify-start gap-x-6 gap-y-2 px-2 text-sm font-bold text-slate-500">
-                  <span className="flex items-center gap-2"><Check size={16} className="text-emerald-500" strokeWidth={3} /> No credit card required</span>
-                  <span className="flex items-center gap-2"><Check size={16} className="text-emerald-500" strokeWidth={3} /> 50 free practice questions</span>
+                  <span className="flex items-center gap-2"><Check size={16} className="text-emerald-500" strokeWidth={3} /> No card needed</span>
+                  <span className="flex items-center gap-2"><Check size={16} className="text-emerald-500" strokeWidth={3} /> 50 free 11+ practice questions</span>
                 </div>
               </motion.div>
 
@@ -279,14 +278,14 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
                         </div>
                         <div>
                             <p className="font-bold text-slate-800 text-sm">Maths Quiz</p>
-                            <p className="text-emerald-600 text-xs font-bold">100% Score!</p>
+                            <p className="text-emerald-600 text-xs font-bold">Full marks!</p>
                         </div>
                     </div>
 
                     <div className="absolute top-6 right-6 bg-white/90 backdrop-blur-md p-3 rounded-2xl shadow-lg border border-white/50 animate-bounce-slow animation-delay-2000">
                          <div className="flex items-center gap-1 text-amber-500 font-bold">
                             <Zap size={16} fill="currentColor" />
-                            <span>12 Day Streak</span>
+                            <span>12-day streak</span>
                          </div>
                     </div>
                 </div>
@@ -317,7 +316,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
                    <div className="absolute top-8 left-8 bg-white/90 backdrop-blur-md p-3 rounded-2xl shadow-lg border border-white/50 animate-pulse">
                         <div className="flex items-center gap-2 text-indigo-600 font-black">
                            <Trophy size={20} className="fill-current text-yellow-400" />
-                           <span>Level Up!</span>
+                           <span>Level up!</span>
                         </div>
                    </div>
                 </div>
@@ -333,15 +332,15 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
                 <div className="w-12 h-12 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center mb-6">
                    <Gamepad2 size={24} />
                 </div>
-                <h2 className="text-3xl sm:text-5xl font-black text-slate-900 mb-6 tracking-tight">Turn Study Time into <span className="text-amber-500">Play Time</span></h2>
+                <h2 className="text-3xl sm:text-5xl font-black text-slate-900 mb-6 tracking-tight">Turn revision into <span className="text-amber-500">play</span></h2>
                 <p className="text-lg text-slate-600 mb-8 leading-relaxed">
-                   Boring worksheets are a thing of the past. WhizPrep uses game mechanics to keep your child engaged and motivated. 
+                   Worksheets don’t have to be a battle. WhizPrep uses game-style rewards to keep your child focused, motivated and coming back each day.
                 </p>
                 <ul className="space-y-4 mb-8">
                    {[
-                     "Earn stars and badges for every achievement",
-                     "Compete on weekly leaderboards with friends",
-                     "Maintain daily streaks to unlock rewards"
+                     "Earn Stars and badges for every milestone",
+                     "Climb weekly leaderboards",
+                     "Build a daily streak to unlock rewards"
                    ].map((item, i) => (
                       <li key={i} className="flex items-center gap-3 font-bold text-slate-700">
                          <div className="w-6 h-6 rounded-full bg-amber-200 text-amber-700 flex items-center justify-center shrink-0"><Check size={14} strokeWidth={3} /></div>
@@ -350,7 +349,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
                    ))}
                 </ul>
                 <Button onClick={() => setShowModal(true)} size="lg" className="shadow-lg shadow-amber-200 bg-amber-500 hover:bg-amber-600 text-white border-0">
-                   Start Playing Now
+                   Start practising now
                 </Button>
              </motion.div>
           </div>
@@ -372,15 +371,15 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
                 <div className="w-12 h-12 rounded-2xl bg-indigo-100 text-indigo-600 flex items-center justify-center mb-6">
                    <Brain size={24} />
                 </div>
-                <h2 className="text-3xl sm:text-5xl font-black text-slate-900 mb-6 tracking-tight">Instant Help, <span className="text-indigo-600">Zero Frustration</span></h2>
+                <h2 className="text-3xl sm:text-5xl font-black text-slate-900 mb-6 tracking-tight">Instant help, <span className="text-indigo-600">less frustration</span></h2>
                 <p className="text-lg text-slate-600 mb-8 leading-relaxed">
-                   Say goodbye to study struggles. Our smart learning assistant provides immediate, gentle guidance to help your child understand difficult concepts without just giving away the answers.
+                   No more tears over tricky questions. Your child gets calm, step-by-step support that helps them learn — without simply giving the answer away.
                 </p>
                 <ul className="space-y-4 mb-8">
                    {[
-                     "Step-by-step breakdowns for complex problems",
-                     "Hints that guide rather than tell",
-                     "Builds independent problem-solving skills"
+                     "Step-by-step explanations for tougher questions",
+                     "Hints that guide, not give away",
+                     "Builds independent problem-solving"
                    ].map((item, i) => (
                       <li key={i} className="flex items-center gap-3 font-bold text-slate-700">
                          <div className="w-6 h-6 rounded-full bg-indigo-200 text-indigo-700 flex items-center justify-center shrink-0"><Check size={14} strokeWidth={3} /></div>
@@ -389,7 +388,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
                    ))}
                 </ul>
                 <Button onClick={() => setShowModal(true)} size="lg" className="shadow-lg shadow-indigo-200">
-                   Start Learning Now
+                   Try the tutor now
                 </Button>
              </motion.div>
 
@@ -409,7 +408,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
                       className="w-full h-auto object-cover"
                    />
                    <div className="absolute bottom-8 right-8 bg-white/90 backdrop-blur-md p-4 rounded-2xl shadow-lg border border-white/50 flex flex-col gap-1">
-                        <div className="text-xs font-bold text-slate-400 uppercase">Current Topic</div>
+                        <div className="text-xs font-bold text-slate-400 uppercase">Current topic</div>
                         <div className="font-black text-slate-800 flex items-center gap-2">
                            <GraduationCap className="text-indigo-600" size={18} /> Verbal Reasoning
                         </div>
@@ -425,8 +424,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
       <div className="relative z-10 bg-slate-50 py-24 border-t border-slate-200">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-black text-slate-900 mb-4">Everything you need to succeed</h2>
-            <p className="text-lg text-slate-500 max-w-2xl mx-auto">Comprehensive curriculum covering all 11+ requirements.</p>
+            <h2 className="text-3xl sm:text-4xl font-black text-slate-900 mb-4">Everything your child needs for the 11+</h2>
+            <p className="text-lg text-slate-500 max-w-2xl mx-auto">A complete 11+ curriculum aligned to the topics and question styles used in entrance exams.</p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -440,9 +439,9 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
               <div className="w-14 h-14 rounded-2xl bg-indigo-100 text-indigo-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                 <Brain size={28} />
               </div>
-              <h3 className="text-xl font-bold text-slate-800 mb-3">Smart Analytics</h3>
+              <h3 className="text-xl font-bold text-slate-800 mb-3">Smart progress tracking</h3>
               <p className="text-slate-500 font-medium leading-relaxed">
-                Track strengths and weaknesses with detailed dashboards. Know exactly where to focus.
+                See what to focus on next with clear progress and topic insights.
               </p>
             </motion.div>
 
@@ -457,9 +456,9 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
               <div className="w-14 h-14 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                 <Trophy size={28} />
               </div>
-              <h3 className="text-xl font-bold text-slate-800 mb-3">Unlimited Practice</h3>
+              <h3 className="text-xl font-bold text-slate-800 mb-3">Unlimited 11+ practice</h3>
               <p className="text-slate-500 font-medium leading-relaxed">
-                Access thousands of questions across Maths, English, Verbal and Non-Verbal Reasoning.
+                Thousands of 11+ practice questions across Maths, English, Verbal and Non-Verbal Reasoning.
               </p>
             </motion.div>
 
@@ -474,9 +473,9 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
               <div className="w-14 h-14 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                 <Target size={28} />
               </div>
-              <h3 className="text-xl font-bold text-slate-800 mb-3">School Specific</h3>
+              <h3 className="text-xl font-bold text-slate-800 mb-3">Exam-board aligned</h3>
               <p className="text-slate-500 font-medium leading-relaxed">
-                Tailored content for GL Assessment, CEM, ISEB, and CSSE exam boards.
+                Practice tailored to GL Assessment, CEM-style, ISEB Pre-Test and CSSE formats.
               </p>
             </motion.div>
           </div>
@@ -488,7 +487,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-black text-slate-900 mb-4">How It Works</h2>
-            <p className="text-lg text-slate-500">Three simple steps to exam success</p>
+            <p className="text-lg text-slate-500">Three simple steps to get started</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
@@ -496,9 +495,9 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
             <div className="hidden md:block absolute top-12 left-[16%] right-[16%] h-1 bg-slate-100 -z-10 rounded-full" />
 
             {[
-              { title: "Sign up free", desc: "Create your account in seconds. No credit card required.", icon: Users, color: "blue" },
-              { title: "Choose your path", desc: "Select Grammar, Private, or State school preparation.", icon: Target, color: "purple" },
-              { title: "Start practicing", desc: "Access thousands of adaptive questions instantly.", icon: Rocket, color: "emerald" },
+              { title: "Sign up free", desc: "Create an account in seconds — no card needed.", icon: Users, color: "blue" },
+              { title: "Choose your path", desc: "Choose grammar, independent or state-school preparation.", icon: Target, color: "purple" },
+              { title: "Start practising", desc: "Jump into adaptive practice questions and mock-style quizzes straight away.", icon: Rocket, color: "emerald" },
             ].map((step, idx) => (
               <div key={idx} className="flex flex-col items-center text-center">
                 <div className={`w-24 h-24 rounded-3xl bg-white border-4 border-slate-100 flex items-center justify-center text-${step.color}-600 mb-6 shadow-xl relative z-10`}>
@@ -525,9 +524,9 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
              {[
-               { name: "Sarah J.", role: "Mother of 2", text: "My daughter actually asks to do her 11+ practice now. The gamification is a game changer!", bg: "bg-white" },
+               { name: "Sarah J.", role: "Mother of 2", text: "My daughter actually asks to do her 11+ practice now. The rewards and streaks make such a difference.", bg: "bg-white" },
                { name: "David P.", role: "Father of Tom", text: "We were struggling with Non-Verbal Reasoning until we found WhizPrep. The explanations are brilliant.", bg: "bg-white" },
-               { name: "Emily R.", role: "Mother of 3", text: "Passed the Grammar school entry exam with flying colors. WhizPrep was our main resource.", bg: "bg-white" },
+               { name: "Emily R.", role: "Mother of 3", text: "My child passed the grammar school entrance exam with flying colours. WhizPrep was our main resource.", bg: "bg-white" },
              ].map((t, idx) => (
                <div key={idx} className={`p-8 rounded-3xl ${t.bg} border border-slate-100 shadow-sm hover:scale-105 transition-transform duration-300`}>
                  <div className="flex text-amber-400 mb-4">
@@ -558,10 +557,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
           
           <div className="space-y-4">
             {[
-              { q: "Is WhizPrep suitable for CEM and GL assessments?", a: "Yes! We cover both styles. You can select your specific target school type during onboarding to customize the curriculum." },
-              { q: "What age range is this for?", a: "WhizPrep is designed for children aged 8-11 (Years 3-6) preparing for secondary school entrance exams." },
-              { q: "Can I use it on a tablet?", a: "Absolutely. WhizPrep is fully responsive and works great on iPads, Android tablets, and phones." },
-              { q: "How much does it cost?", a: "You can get started for free with no credit card. We offer premium plans for unlimited practice and advanced analytics." }
+              { q: "Is WhizPrep suitable for GL and CEM-style 11+ exams?", a: "Yes. You can choose your target exam style during onboarding, and practice questions will match the format and difficulty." },
+              { q: "What year groups is this for?", a: "Designed for Year 3 to Year 6 (roughly ages 7–11), including focused Year 5 and Year 6 11+ preparation." },
+              { q: "Does it work on iPads and tablets?", a: "Yes — WhizPrep works smoothly on iPad, Android tablets, laptops and phones." },
+              { q: "How much does it cost?", a: "Start free with no card. Upgrade anytime for unlimited practice, full analytics and extra mock-style quizzes." }
             ].map((faq, idx) => (
               <div key={idx} className="bg-slate-50 p-6 rounded-2xl shadow-sm border border-slate-100">
                 <h3 className="font-bold text-lg text-slate-800 mb-2 flex items-start gap-3">
@@ -585,27 +584,27 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
         
         <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
             <h2 className="text-4xl sm:text-7xl font-black text-white mb-8 tracking-tight leading-tight">
-                Don't let the 11+ <br/>
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 to-purple-300">stress you out.</span>
+                Take the stress out of 11+ preparation. <br/>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 to-purple-300">Start with confidence.</span>
             </h2>
             <p className="text-lg sm:text-2xl text-slate-300 mb-10 max-w-2xl mx-auto">
-                Get instant access to AI tutoring, unlimited practice questions, and mock exams.
+                Get AI tutor support, thousands of 11+ practice questions, and mock-style quizzes in minutes.
             </p>
             
             <button 
                 onClick={() => setShowModal(true)}
                 className="group relative inline-flex items-center gap-3 px-8 py-4 sm:px-12 sm:py-6 bg-white text-indigo-900 rounded-2xl font-black text-xl sm:text-2xl shadow-2xl shadow-indigo-900/50 hover:scale-[1.02] hover:shadow-white/20 transition-all duration-300"
             >
-                Start Free Trial
+                Start free trial
                 <span className="w-8 h-8 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center group-hover:translate-x-1 transition-transform">
                     <ArrowRight size={20} strokeWidth={3} />
                 </span>
             </button>
 
             <div className="mt-10 flex flex-wrap justify-center gap-6 text-sm font-bold text-slate-400">
-                 <span className="flex items-center gap-2"><CheckCircle size={16} className="text-emerald-400" /> No credit card needed</span>
-                 <span className="flex items-center gap-2"><CheckCircle size={16} className="text-emerald-400" /> 1000+ Questions</span>
-                 <span className="flex items-center gap-2"><CheckCircle size={16} className="text-emerald-400" /> AI Tutor Included</span>
+                 <span className="flex items-center gap-2"><CheckCircle size={16} className="text-emerald-400" /> No card needed</span>
+                 <span className="flex items-center gap-2"><CheckCircle size={16} className="text-emerald-400" /> 1,000+ questions</span>
+                 <span className="flex items-center gap-2"><CheckCircle size={16} className="text-emerald-400" /> AI tutor included</span>
             </div>
         </div>
       </div>
@@ -620,7 +619,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
               <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center font-bold">11+</div>
               <span className="font-extrabold text-xl">WhizPrep</span>
             </div>
-            <p className="text-sm">Empowering the next generation of bright minds.</p>
+            <p className="text-sm">Helping children feel confident for the 11+.</p>
           </div>
           
           <div>
@@ -645,13 +644,13 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
             <h4 className="font-bold text-white mb-4">Legal</h4>
             <ul className="space-y-2 text-sm">
               <li>Privacy</li>
-              <li>Terms</li>
+              <li>Terms of use</li>
               <li>Contact</li>
             </ul>
           </div>
         </div>
         <div className="max-w-6xl mx-auto px-6 mt-12 pt-8 border-t border-slate-800 text-center text-xs">
-          <p>&copy; 2024 WhizPrep Inc. All rights reserved.</p>
+          <p>&copy; 2024 WhizPrep. All rights reserved.</p>
         </div>
       </footer>
     </div>
