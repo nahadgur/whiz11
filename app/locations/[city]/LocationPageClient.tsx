@@ -120,7 +120,7 @@ export default function LocationPageClient({ city, subjects, allCities }: { city
             {subjects.map((s, i) => (
               <motion.div key={s.slug} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }}>
                 <Link href={`/${s.slug}/${city.slug}`} className="flex items-center gap-4 p-5 bg-white rounded-2xl border border-slate-100 hover:border-indigo-200 hover:shadow-xl transition-all group">
-                  <div className={`w-12 h-12 rounded-xl ${s.bg} flex items-center justify-center shrink-0`}><s.icon size={22} className={s.color} /></div>
+                  <div className={`w-12 h-12 rounded-xl ${s.bg} flex items-center justify-center shrink-0`}>{s.icon && <s.icon size={22} className={s.color} />}</div>
                   <div className="flex-1 min-w-0">
                     <div className="font-bold text-slate-800 group-hover:text-indigo-700 transition-colors">11+ {s.label} in {city.label}</div>
                     <div className="text-sm text-slate-400 font-medium">{s.desc}</div>
