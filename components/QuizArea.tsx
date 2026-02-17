@@ -4,7 +4,6 @@ import {
   ArrowRight,
   Loader2,
   Timer,
-  HelpCircle,
   AlertCircle,
   BookOpen,
   CheckCircle,
@@ -23,7 +22,6 @@ interface QuizAreaProps {
   quizType: QuizType;
   topic?: string;
   onComplete: (result: QuizResult) => void;
-  onAskTutor: (context: string) => void;
 }
 
 export const QuizArea: React.FC<QuizAreaProps> = ({
@@ -33,7 +31,6 @@ export const QuizArea: React.FC<QuizAreaProps> = ({
   quizType,
   topic,
   onComplete,
-  onAskTutor
 }) => {
   const [state, setState] = useState<QuizState>({
     questions: [],
@@ -486,16 +483,7 @@ export const QuizArea: React.FC<QuizAreaProps> = ({
             </AnimatePresence>
           </motion.div>
 
-          <div className="flex flex-col-reverse sm:flex-row justify-between items-center gap-4">
-            <Button
-              onClick={() => onAskTutor(currentQ.text)}
-              variant="ghost"
-              size="sm"
-              className="text-indigo-600 hover:bg-indigo-50 font-bold w-full sm:w-auto"
-            >
-              <HelpCircle size={18} /> Need a hint?
-            </Button>
-
+          <div className="flex justify-end items-center gap-4">
             <AnimatePresence>
               {state.selectedAnswer && (
                 <motion.div
