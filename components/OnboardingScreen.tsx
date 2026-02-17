@@ -1,13 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { School, BookOpen, Building2, Check } from 'lucide-react';
+import { School, BookOpen, Building2, Check, ArrowLeft } from 'lucide-react';
 import { SchoolType } from '../types';
 
 interface OnboardingScreenProps {
   onSelect: (type: SchoolType) => void;
+  onBack: () => void;
 }
 
-export const OnboardingScreen: React.FC<OnboardingScreenProps> = ({ onSelect }) => {
+export const OnboardingScreen: React.FC<OnboardingScreenProps> = ({ onSelect, onBack }) => {
   const options = [
     {
       id: SchoolType.Grammar,
@@ -36,7 +37,26 @@ export const OnboardingScreen: React.FC<OnboardingScreenProps> = ({ onSelect }) 
   ];
 
   return (
-    <div className="min-h-[90vh] flex flex-col items-center justify-center p-6">
+    <div className="min-h-screen flex flex-col">
+      {/* Minimal navbar */}
+      <nav className="w-full px-4 sm:px-6 py-4 flex items-center justify-between max-w-7xl mx-auto">
+        <div className="flex items-center gap-2">
+          <div className="w-9 h-9 bg-gradient-to-br from-indigo-500 to-violet-600 rounded-xl flex items-center justify-center text-white font-black text-base shadow-md">
+            11+
+          </div>
+          <h1 className="text-xl font-extrabold text-slate-800 tracking-tight">
+            Whiz<span className="text-indigo-600">Prep</span>
+          </h1>
+        </div>
+        <button
+          onClick={onBack}
+          className="flex items-center gap-2 text-sm font-bold text-slate-500 hover:text-indigo-600 transition-colors px-3 py-2 rounded-lg hover:bg-slate-100"
+        >
+          <ArrowLeft size={16} /> Back
+        </button>
+      </nav>
+
+      <div className="flex-1 flex flex-col items-center justify-center p-6">
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -77,6 +97,7 @@ export const OnboardingScreen: React.FC<OnboardingScreenProps> = ({ onSelect }) 
             </div>
           </motion.button>
         ))}
+      </div>
       </div>
     </div>
   );
