@@ -12,7 +12,7 @@ import { ProgressScreen } from '../components/ProgressScreen';
 import { LeaderboardScreen } from '../components/LeaderboardScreen';
 import { OnboardingScreen } from '../components/OnboardingScreen';
 import { ThemeSelector } from '../components/ThemeSelector';
-import { LandingPage } from '../components/LandingPage';
+import { LandingPage, LeadGenModal } from '../components/LandingPage';
 import confetti from 'canvas-confetti';
 
 const INITIAL_BADGES: Badge[] = [
@@ -52,6 +52,9 @@ export default function Home() {
   });
   
   const [lastResult, setLastResult] = useState<QuizResult | null>(null);
+  const [hasSubmittedLead, setHasSubmittedLead] = useState(false);
+  const [showLeadModal, setShowLeadModal] = useState(false);
+  const [pendingResult, setPendingResult] = useState<QuizResult | null>(null);
   const [newlyUnlockedBadges, setNewlyUnlockedBadges] = useState<Badge[]>([]);
 
   useEffect(() => {
@@ -125,8 +128,7 @@ export default function Home() {
   };
 
   const handleQuizComplete = (result: QuizResult) => {
-    setLastResult(result);
-
+    // Always compute stats immediately
     setStats(prev => {
       const newProgress = { ...prev.progress };
       const subProg = newProgress[result.subject] || { totalQuestions: 0, correctAnswers: 0 };
@@ -151,13 +153,26 @@ export default function Home() {
     });
 
     if (result.score === result.total) {
-      confetti({
-        particleCount: 100,
-        spread: 70,
-        origin: { y: 0.6 }
-      });
+      confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
     }
 
+    // If they haven't given us their details yet, show modal before results
+    if (!hasSubmittedLead) {
+      setPendingResult(result);
+      setShowLeadModal(true);
+    } else {
+      setLastResult(result);
+      setScreen('results');
+    }
+  };
+
+  const handleLeadSubmit = () => {
+    setHasSubmittedLead(true);
+    setShowLeadModal(false);
+    if (pendingResult) {
+      setLastResult(pendingResult);
+      setPendingResult(null);
+    }
     setScreen('results');
   };
 
@@ -235,6 +250,21 @@ export default function Home() {
           <LeaderboardScreen currentUserStats={stats} onBack={() => setScreen('dashboard')} />
         )}
       </main>
+
+      <LeadGenModal
+        isOpen={showLeadModal}
+        onClose={() => {
+          // Allow closing — but still show results with pending data
+          setShowLeadModal(false);
+          setHasSubmittedLead(true);
+          if (pendingResult) {
+            setLastResult(pendingResult);
+            setPendingResult(null);
+          }
+          setScreen('results');
+        }}
+        onSubmit={handleLeadSubmit}
+      />
 
       <ThemeSelector 
         isOpen={showThemeSelector}
