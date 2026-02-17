@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { SUBJECTS, UK_CITIES } from '@/components/SiteNav';
+import { SUBJECTS, UK_CITIES } from '@/lib/siteData';
 
 export const SiteFooter: React.FC = () => (
   <footer className="bg-slate-900 text-slate-400 pt-16 pb-10 border-t border-slate-800">
