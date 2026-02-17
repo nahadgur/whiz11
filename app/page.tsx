@@ -193,7 +193,10 @@ export default function Home() {
 
       <main>
         {screen === 'onboarding' && (
-          <OnboardingScreen onSelect={handleSchoolSelect} />
+          <OnboardingScreen 
+            onSelect={handleSchoolSelect}
+            onBack={() => setShowLanding(true)}
+          />
         )}
 
         {screen === 'dashboard' && (
