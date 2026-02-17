@@ -408,28 +408,37 @@ export const QuizArea: React.FC<QuizAreaProps> = ({ subject, schoolType, mode, q
                 </div>
             )}
             
-            {/* Immediate Explanation */}
-            <AnimatePresence>
-            {mode === 'practice' && state.selectedAnswer && (
-               <motion.div 
-                 initial={{ opacity: 0, height: 0, scale: 0.95 }}
-                 animate={{ opacity: 1, height: 'auto', scale: 1 }}
-                 exit={{ opacity: 0, height: 0 }}
-                 transition={{ type: "spring", bounce: 0.4 }}
-                 className={`mt-6 p-4 sm:p-5 rounded-xl text-sm border-l-4 overflow-hidden ${state.isCorrect ? 'bg-emerald-50 border-emerald-400 text-emerald-900' : 'bg-rose-50 border-rose-400 text-rose-900'}`}
-               >
-                 <p className="font-bold mb-2 uppercase tracking-wide text-xs">{state.isCorrect ? 'Correct Answer' : 'Incorrect'}</p>
-                 <p className="leading-relaxed font-medium mb-2">{currentQ.explanation}</p>
-                 {!state.isCorrect && quizType === 'fill-in-the-blank' && (
-                     <p className="font-bold">Correct answer: {currentQ.correctAnswer}</p>
-                 )}
-                 {!state.isCorrect && quizType === 'ordering' && (
-                     <p className="font-bold">Correct order: {currentQ.correctAnswer}</p>
-                 )}
-               </motion.div>
-            )}
+                       {/* Immediate Explanation */}
+            <AnimatePresence initial={false} mode="wait">
+              {mode === 'practice' && state.selectedAnswer && (
+                <motion.div
+                  key={`${currentQ.id}-${state.isCorrect ? 'correct' : 'wrong'}`}
+                  layout
+                  initial={{ opacity: 0, y: 8, clipPath: 'inset(0 0 100% 0 round 12px)' }}
+                  animate={{ opacity: 1, y: 0, clipPath: 'inset(0 0 0% 0 round 12px)' }}
+                  exit={{ opacity: 0, y: 6, clipPath: 'inset(0 0 100% 0 round 12px)' }}
+                  transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                  className={`mt-6 p-4 sm:p-5 rounded-xl text-sm border-l-4 overflow-hidden will-change-transform ${
+                    state.isCorrect
+                      ? 'bg-emerald-50 border-emerald-400 text-emerald-900'
+                      : 'bg-rose-50 border-rose-400 text-rose-900'
+                  }`}
+                >
+                  <p className="font-bold mb-2 uppercase tracking-wide text-xs">
+                    {state.isCorrect ? 'Correct answer' : 'Not quite'}
+                  </p>
+                  <p className="leading-relaxed font-medium mb-2">{currentQ.explanation}</p>
+
+                  {!state.isCorrect && quizType === 'fill-in-the-blank' && (
+                    <p className="font-bold">Correct answer: {currentQ.correctAnswer}</p>
+                  )}
+                  {!state.isCorrect && quizType === 'ordering' && (
+                    <p className="font-bold">Correct order: {currentQ.correctAnswer}</p>
+                  )}
+                </motion.div>
+              )}
             </AnimatePresence>
-          </div>
+
 
           <div className="flex flex-col-reverse sm:flex-row justify-between items-center gap-4">
              <Button 
