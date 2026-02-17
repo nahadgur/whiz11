@@ -68,7 +68,13 @@ export default function LocationPageClient({ city, subjects, allCities }: { city
 
       {/* ─── Hero ─────────────────────────────────────────────────────────── */}
       <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-950 pt-20 pb-28 px-4 sm:px-6">
-        <div className="absolute inset-0 pointer-events-none">
+        {/* Mobile-only: photo as background with dark gradient overlay */}
+        <div className="absolute inset-0 lg:hidden">
+          <img src={heroImg} alt="" className="w-full h-full object-cover object-top" />
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-900/80 via-slate-900/75 to-slate-900/90" />
+        </div>
+
+        <div className="absolute inset-0 pointer-events-none hidden lg:block">
           <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-indigo-600 rounded-full blur-[150px] opacity-10" />
         </div>
 
