@@ -12,7 +12,7 @@ interface DashboardProps {
 const subjects = [
   {
     id: Subject.Maths,
-    title: 'Mathematics',
+    title: 'Maths',
     icon: Calculator,
     gradient: 'from-blue-500 to-cyan-500',
     shadow: 'shadow-blue-200',
