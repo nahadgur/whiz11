@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   ArrowRight,
+  ArrowLeft,
   Loader2,
   Timer,
   AlertCircle,
@@ -22,6 +23,7 @@ interface QuizAreaProps {
   quizType: QuizType;
   topic?: string;
   onComplete: (result: QuizResult) => void;
+  onBackToDashboard: () => void;
 }
 
 export const QuizArea: React.FC<QuizAreaProps> = ({
@@ -31,6 +33,7 @@ export const QuizArea: React.FC<QuizAreaProps> = ({
   quizType,
   topic,
   onComplete,
+  onBackToDashboard,
 }) => {
   const [state, setState] = useState<QuizState>({
     questions: [],
@@ -205,6 +208,14 @@ export const QuizArea: React.FC<QuizAreaProps> = ({
 
   return (
     <div className="max-w-3xl mx-auto p-3 sm:p-6 pb-24">
+      {/* Back to Dashboard */}
+      <button
+        onClick={onBackToDashboard}
+        className="flex items-center gap-2 text-sm font-bold text-slate-500 hover:text-indigo-600 transition-colors mb-4 px-2 py-1 rounded-lg hover:bg-white/60"
+      >
+        <ArrowLeft size={16} /> Dashboard
+      </button>
+
       {/* HUD */}
       <div className="flex flex-wrap justify-between items-end gap-3 mb-6 bg-white/90 backdrop-blur rounded-2xl p-4 shadow-sm border border-slate-100">
         <div className="flex flex-col min-w-[140px]">
