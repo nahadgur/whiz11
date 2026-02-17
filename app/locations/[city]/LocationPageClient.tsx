@@ -31,7 +31,7 @@ const CITY_CONTENT: Record<string, { grammar?: string[]; independent?: string[];
   default: { blurb: 'Families across the UK are competing for places at grammar and independent schools. WhizPrep gives your child the best possible preparation with exam-style questions, instant feedback and progress tracking.' },
 };
 
-interface SubjectData { slug: string; label: string; desc: string; color: string; bg: string; icon: React.ElementType }
+interface SubjectData { slug: string; label: string; desc: string; color: string; bg: string; dot: string; icon?: React.ElementType }
 interface CityData { slug: string; label: string }
 
 export default function LocationPageClient({ city, subjects, allCities }: { city: CityData; subjects: SubjectData[]; allCities: CityData[] }) {
