@@ -21,7 +21,7 @@ const SUBJECT_STYLE: Record<string, { gradient: string; light: string; dot: stri
   'non-verbal-reasoning': { gradient: 'from-amber-500 to-orange-500', light: 'bg-amber-50', dot: 'bg-amber-500', accent: 'text-amber-600' },
 };
 
-interface SubjectData { slug: string; label: string; desc: string; color: string; bg: string; icon: React.ElementType }
+interface SubjectData { slug: string; label: string; desc: string; color: string; bg: string; dot: string; icon?: React.ElementType }
 interface CityData { slug: string; label: string }
 
 export default function SubjectCityPageClient({ subject, city, allSubjects, allCities }: { subject: SubjectData; city: CityData; allSubjects: SubjectData[]; allCities: CityData[] }) {
