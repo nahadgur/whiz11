@@ -5,16 +5,16 @@ import { Button } from './Button';
 
 interface HeaderProps {
   stats: UserStats;
-  onHome: () => void;
+  onLogoClick: () => void;
   onOpenThemeSelector: () => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ stats, onHome, onOpenThemeSelector }) => {
+export const Header: React.FC<HeaderProps> = ({ stats, onLogoClick, onOpenThemeSelector }) => {
   return (
     <header className="w-full sticky top-2 sm:top-4 z-50 px-2 sm:px-4 mb-4 sm:mb-6">
       <div className="max-w-5xl mx-auto h-14 sm:h-16 bg-white/90 backdrop-blur-md rounded-xl sm:rounded-2xl shadow-sm border border-white/50 flex justify-between items-center px-3 sm:px-6">
         <div 
-          onClick={onHome}
+          onClick={onLogoClick}
           className="cursor-pointer flex items-center gap-2 group shrink-0"
         >
           <div className="w-8 h-8 sm:w-9 sm:h-9 bg-gradient-to-br from-indigo-500 to-violet-600 rounded-lg sm:rounded-xl flex items-center justify-center text-white font-black text-base sm:text-lg shadow-md group-hover:scale-105 transition-transform">
