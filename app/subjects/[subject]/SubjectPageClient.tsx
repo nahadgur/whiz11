@@ -72,7 +72,7 @@ export default function SubjectPageClient({ subject, cities }: { subject: Subjec
         </div>
         <div className="relative max-w-5xl mx-auto text-center">
           <div className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-bold mb-6 ${content.lightBg} ${content.color}`}>
-            <subject.icon size={15} /> Free 11+ {subject.label} Practice
+            {subject.icon && <subject.icon size={15} />} Free 11+ {subject.label} Practice
           </div>
           <h1 className="text-4xl sm:text-6xl font-black text-white tracking-tight mb-6 leading-[1.1]">
             Free 11+ <span className={`text-transparent bg-clip-text bg-gradient-to-r ${content.gradient}`}>{subject.label}</span> Practice Questions
