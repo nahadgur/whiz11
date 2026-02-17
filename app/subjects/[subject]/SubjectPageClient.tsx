@@ -54,7 +54,7 @@ const SUBJECT_CONTENT: Record<string, { topics: string[]; heroStat: string; hero
   },
 };
 
-interface SubjectData { slug: string; label: string; desc: string; color: string; bg: string; icon: React.ElementType }
+interface SubjectData { slug: string; label: string; desc: string; color: string; bg: string; dot: string; icon?: React.ElementType }
 interface CityData { slug: string; label: string }
 
 export default function SubjectPageClient({ subject, cities }: { subject: SubjectData; cities: CityData[] }) {
