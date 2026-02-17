@@ -88,6 +88,12 @@ export const SiteNav: React.FC<SiteNavProps> = ({ ctaLabel = 'Try Free', ctaHref
             Blog
           </Link>
 
+          {/* Exam Papers */}
+          <Link href="/exam-papers" className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-bold text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors">
+            Exam Papers
+            <span className="px-1.5 py-0.5 bg-emerald-100 text-emerald-700 text-[10px] font-black rounded-full uppercase tracking-wide leading-none">Free</span>
+          </Link>
+
           {/* Locations dropdown */}
           <div className="relative" onMouseEnter={() => setOpenDropdown('locations')}>
             <button className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-bold transition-colors ${
@@ -181,6 +187,13 @@ export const SiteNav: React.FC<SiteNavProps> = ({ ctaLabel = 'Try Free', ctaHref
               <Link href="/blog" onClick={() => setMobileOpen(false)}
                 className="w-full flex items-center px-3 py-2.5 rounded-xl text-sm font-bold text-slate-700 hover:bg-slate-50 transition-colors">
                 Blog
+              </Link>
+
+              {/* Mobile Exam Papers */}
+              <Link href="/exam-papers" onClick={() => setMobileOpen(false)}
+                className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-bold text-slate-700 hover:bg-slate-50 transition-colors">
+                Exam Papers
+                <span className="px-2 py-0.5 bg-emerald-100 text-emerald-700 text-[10px] font-black rounded-full uppercase tracking-wide">Free</span>
               </Link>
 
               {/* Mobile Locations */}
