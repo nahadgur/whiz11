@@ -6,7 +6,6 @@ import { Header } from '../components/Header';
 import { Dashboard } from '../components/Dashboard';
 import { TopicSelectScreen } from '../components/TopicSelectScreen';
 import { QuizArea } from '../components/QuizArea';
-import { TutorChat } from '../components/TutorChat';
 import { ResultsScreen } from '../components/ResultsScreen';
 import { ReviewScreen } from '../components/ReviewScreen';
 import { ProgressScreen } from '../components/ProgressScreen';
@@ -52,8 +51,6 @@ export default function Home() {
     progress: {}
   });
   
-  const [tutorOpen, setTutorOpen] = useState(false);
-  const [tutorContext, setTutorContext] = useState<string>("");
   const [lastResult, setLastResult] = useState<QuizResult | null>(null);
   const [newlyUnlockedBadges, setNewlyUnlockedBadges] = useState<Badge[]>([]);
 
@@ -164,11 +161,6 @@ export default function Home() {
     setScreen('results');
   };
 
-  const handleAskTutor = (context: string) => {
-    setTutorContext(context);
-    setTutorOpen(true);
-  };
-
   // Show landing page first
   if (showLanding) {
     return <LandingPage onStart={() => setShowLanding(false)} />;
@@ -214,7 +206,6 @@ export default function Home() {
             quizType={quizType}
             topic={selectedTopic}
             onComplete={handleQuizComplete}
-            onAskTutor={handleAskTutor}
           />
         )}
 
@@ -244,12 +235,6 @@ export default function Home() {
           <LeaderboardScreen currentUserStats={stats} onBack={() => setScreen('dashboard')} />
         )}
       </main>
-
-      <TutorChat 
-        isOpen={tutorOpen} 
-        onClose={() => setTutorOpen(false)}
-        initialContext={tutorContext}
-      />
 
       <ThemeSelector 
         isOpen={showThemeSelector}
