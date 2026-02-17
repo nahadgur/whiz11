@@ -210,7 +210,7 @@ export default function SubjectCityPageClient({ subject, city, allSubjects, allC
               <div className="space-y-2">
                 {allSubjects.filter((s) => s.slug !== subject.slug).map((s) => (
                   <Link key={s.slug} href={`/${s.slug}/${city.slug}`} className="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-100 hover:border-indigo-200 hover:bg-indigo-50 text-slate-600 hover:text-indigo-700 text-sm font-semibold transition-all group">
-                    <div className={`w-7 h-7 rounded-lg ${s.bg} flex items-center justify-center shrink-0`}><s.icon size={14} className={s.color} /></div>
+                    <div className={`w-7 h-7 rounded-lg ${s.bg} flex items-center justify-center shrink-0`}>{s.icon && <s.icon size={14} className={s.color} />}</div>
                     11+ {s.label} in {city.label}
                     <ChevronRight size={14} className="ml-auto text-slate-300 group-hover:text-indigo-400" />
                   </Link>
