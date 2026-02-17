@@ -7,7 +7,7 @@ interface LandingPageProps {
   onStart: () => void;
 }
 
-const LeadGenModal = ({ isOpen, onClose, onSubmit }: { isOpen: boolean; onClose: () => void; onSubmit: () => void }) => {
+export const LeadGenModal = ({ isOpen, onClose, onSubmit }: { isOpen: boolean; onClose: () => void; onSubmit: () => void }) => {
   const [formData, setFormData] = useState({
     email: '',
     phone: '',
@@ -149,7 +149,6 @@ const LeadGenModal = ({ isOpen, onClose, onSubmit }: { isOpen: boolean; onClose:
 };
 
 export const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
-  const [showModal, setShowModal] = useState(false);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -179,8 +178,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
           </h1>
         </div>
         <div className="hidden sm:flex items-center gap-4">
-            <button onClick={() => setShowModal(true)} className="text-slate-600 font-bold hover:text-indigo-600 transition-colors">Log in</button>
-            <Button onClick={() => setShowModal(true)} size="md">Get Started</Button>
+            <button onClick={onStart} className="text-slate-600 font-bold hover:text-indigo-600 transition-colors">Log in</button>
+            <Button onClick={onStart} size="md">Get Started</Button>
         </div>
       </nav>
 
@@ -210,7 +209,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
               {/* Call to Action Button */}
               <motion.div variants={itemVariants} className="w-full max-w-lg mb-10 flex flex-col items-center lg:items-start">
                 <button
-                    onClick={() => setShowModal(true)}
+                    onClick={onStart}
                     className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 sm:px-10 sm:py-5 bg-gradient-to-r from-indigo-600 to-violet-600 text-white font-bold text-xl sm:text-2xl rounded-full shadow-xl shadow-indigo-200 transition-all hover:scale-105 hover:shadow-2xl hover:shadow-indigo-500/40 overflow-hidden"
                 >
                     {/* Shine Effect */}
@@ -348,7 +347,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
                       </li>
                    ))}
                 </ul>
-                <Button onClick={() => setShowModal(true)} size="lg" className="shadow-lg shadow-amber-200 bg-amber-500 hover:bg-amber-600 text-white border-0">
+                <Button onClick={onStart} size="lg" className="shadow-lg shadow-amber-200 bg-amber-500 hover:bg-amber-600 text-white border-0">
                    Start practising now
                 </Button>
              </motion.div>
@@ -387,7 +386,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
                       </li>
                    ))}
                 </ul>
-                <Button onClick={() => setShowModal(true)} size="lg" className="shadow-lg shadow-indigo-200">
+                <Button onClick={onStart} size="lg" className="shadow-lg shadow-indigo-200">
                    Try the tutor now
                 </Button>
              </motion.div>
@@ -592,7 +591,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
             </p>
             
             <button 
-                onClick={() => setShowModal(true)}
+                onClick={onStart}
                 className="group relative inline-flex items-center gap-3 px-8 py-4 sm:px-12 sm:py-6 bg-white text-indigo-900 rounded-2xl font-black text-xl sm:text-2xl shadow-2xl shadow-indigo-900/50 hover:scale-[1.02] hover:shadow-white/20 transition-all duration-300"
             >
                 Start free trial
@@ -608,8 +607,6 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
             </div>
         </div>
       </div>
-
-      <LeadGenModal isOpen={showModal} onClose={() => setShowModal(false)} onSubmit={onStart} />
 
       {/* Footer */}
       <footer className="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
