@@ -185,4 +185,54 @@ export default function SubjectCityPageClient({ subject, city, allSubjects, allC
 
       <section className="py-24 px-4 sm:px-6 bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
-          <div className={`absolute top
+          <div className={`absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-96 bg-gradient-to-r ${style.gradient} rounded-full blur-[120px] opacity-15`} />
+        </div>
+        <div className="relative max-w-3xl mx-auto text-center">
+          <h2 className="text-4xl sm:text-6xl font-black text-white tracking-tight mb-6 leading-tight">Give your child the best chance at {city.label}'s top schools.</h2>
+          <p className="text-slate-300 text-xl mb-10 max-w-xl mx-auto">Free 11+ {subject.label} practice. No card needed. Start in under a minute.</p>
+          <button onClick={() => setShowModal(true)} className="group inline-flex items-center gap-3 px-10 py-5 bg-white text-slate-900 font-black text-xl rounded-2xl shadow-2xl hover:scale-[1.03] transition-all">
+            Start free trial
+            <span className="w-9 h-9 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center group-hover:translate-x-1 transition-transform"><ArrowRight size={20} strokeWidth={3} /></span>
+          </button>
+          <div className="mt-6 flex flex-wrap justify-center gap-6 text-sm font-semibold text-slate-400">
+            <span className="flex items-center gap-2"><CheckCircle size={15} className="text-emerald-400" /> No card needed</span>
+            <span className="flex items-center gap-2"><CheckCircle size={15} className="text-emerald-400" /> 50 free questions</span>
+            <span className="flex items-center gap-2"><CheckCircle size={15} className="text-emerald-400" /> All 4 subjects included</span>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 px-4 sm:px-6 bg-slate-50 border-t border-slate-200">
+        <div className="max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div>
+              <h3 className="text-lg font-black text-slate-800 mb-4">Other subjects in {city.label}</h3>
+              <div className="space-y-2">
+                {allSubjects.filter((s) => s.slug !== subject.slug).map((s) => (
+                  <Link key={s.slug} href={`/${s.slug}/${city.slug}`} className="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-100 hover:border-indigo-200 hover:bg-indigo-50 text-slate-600 hover:text-indigo-700 text-sm font-semibold transition-all group">
+                    <div className={`w-7 h-7 rounded-lg ${s.bg} flex items-center justify-center shrink-0`}><s.icon size={14} className={s.color} /></div>
+                    11+ {s.label} in {city.label}
+                    <ChevronRight size={14} className="ml-auto text-slate-300 group-hover:text-indigo-400" />
+                  </Link>
+                ))}
+              </div>
+            </div>
+            <div>
+              <h3 className="text-lg font-black text-slate-800 mb-4">11+ {subject.label} in other cities</h3>
+              <div className="grid grid-cols-2 gap-2">
+                {allCities.filter((c) => c.slug !== city.slug).slice(0, 10).map((c) => (
+                  <Link key={c.slug} href={`/${subject.slug}/${c.slug}`} className="flex items-center gap-2 px-3 py-2.5 bg-white rounded-xl border border-slate-100 hover:border-indigo-200 hover:bg-indigo-50 text-slate-600 hover:text-indigo-700 text-xs font-semibold transition-all group">
+                    <MapPin size={11} className="text-slate-300 group-hover:text-indigo-400 shrink-0" />{c.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <SiteFooter />
+      <LeadGenModal isOpen={showModal} onClose={() => setShowModal(false)} onSubmit={handleModalSubmit} />
+    </div>
+  );
+}
