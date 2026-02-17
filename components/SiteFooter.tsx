@@ -34,8 +34,9 @@ export const SiteFooter: React.FC = () => (
           <h4 className="font-black text-white text-sm mb-4 uppercase tracking-wide">Product</h4>
           <ul className="space-y-2 text-sm">
             <li><Link href="/" className="hover:text-white transition-colors">Practice App</Link></li>
+            <li><Link href="/exam-papers" className="hover:text-white transition-colors">Free Exam Papers</Link></li>
             <li><Link href="/blog" className="hover:text-white transition-colors">Blog</Link></li>
-            <li><span>Pricing</span></li>
+            <li><span>For Schools</span></li>
             <li><span>For Schools</span></li>
           </ul>
         </div>
