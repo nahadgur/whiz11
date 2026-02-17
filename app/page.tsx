@@ -186,7 +186,7 @@ export default function Home() {
       {screen !== 'onboarding' && (
         <Header 
           stats={stats} 
-          onHome={() => { setScreen('dashboard'); setSubject(null); }} 
+          onLogoClick={() => { setShowLanding(true); setScreen('onboarding'); }}
           onOpenThemeSelector={() => setShowThemeSelector(true)}
         />
       )}
@@ -224,6 +224,7 @@ export default function Home() {
             quizType={quizType}
             topic={selectedTopic}
             onComplete={handleQuizComplete}
+            onBackToDashboard={() => { setScreen('dashboard'); setSubject(null); }}
           />
         )}
 
