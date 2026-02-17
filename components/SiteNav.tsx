@@ -23,13 +23,25 @@ export { UK_CITIES };
 interface SiteNavProps {
   ctaLabel?: string;
   ctaHref?: string;
+  onCtaClick?: () => void;
 }
 
-export const SiteNav: React.FC<SiteNavProps> = ({ ctaLabel = 'Try Free', ctaHref = '/' }) => {
+export const SiteNav: React.FC<SiteNavProps> = ({
+  ctaLabel = 'Try Free',
+  ctaHref = '/',
+  onCtaClick,
+}) => {
   const [openDropdown, setOpenDropdown] = useState<'subjects' | 'locations' | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileExpanded, setMobileExpanded] = useState<'subjects' | 'locations' | null>(null);
   const close = () => setOpenDropdown(null);
+
+  const handleCtaClick = (e: React.MouseEvent) => {
+    if (onCtaClick) {
+      e.preventDefault();
+      onCtaClick();
+    }
+  };
 
   return (
     <nav className="w-full sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-sm" onMouseLeave={close}>
@@ -83,13 +95,21 @@ export const SiteNav: React.FC<SiteNavProps> = ({ ctaLabel = 'Try Free', ctaHref
             </AnimatePresence>
           </div>
 
+          {/* Mock Tests */}
+          <Link href="/mock-tests"
+            className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-bold text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors">
+            Mock Tests
+            <span className="px-1.5 py-0.5 bg-indigo-100 text-indigo-700 text-[10px] font-black rounded-full uppercase tracking-wide leading-none">New</span>
+          </Link>
+
           {/* Blog */}
           <Link href="/blog" className="px-4 py-2 rounded-lg text-sm font-bold text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors">
             Blog
           </Link>
 
           {/* Exam Papers */}
-          <Link href="/exam-papers" className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-bold text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors">
+          <Link href="/exam-papers"
+            className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-bold text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors">
             Exam Papers
             <span className="px-1.5 py-0.5 bg-emerald-100 text-emerald-700 text-[10px] font-black rounded-full uppercase tracking-wide leading-none">Free</span>
           </Link>
@@ -132,8 +152,11 @@ export const SiteNav: React.FC<SiteNavProps> = ({ ctaLabel = 'Try Free', ctaHref
           <Link href="/" className="text-sm font-bold text-slate-500 hover:text-indigo-600 transition-colors px-3 py-2">
             Log in
           </Link>
-          <Link href={ctaHref}
-            className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-indigo-600 to-violet-600 text-white font-bold text-sm rounded-xl shadow-md shadow-indigo-200 hover:scale-[1.02] hover:shadow-indigo-300 transition-all">
+          <Link
+            href={onCtaClick ? '#' : ctaHref}
+            onClick={onCtaClick ? handleCtaClick : undefined}
+            className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-indigo-600 to-violet-600 text-white font-bold text-sm rounded-xl shadow-md shadow-indigo-200 hover:scale-[1.02] hover:shadow-indigo-300 transition-all"
+          >
             {ctaLabel}
           </Link>
         </div>
@@ -183,6 +206,13 @@ export const SiteNav: React.FC<SiteNavProps> = ({ ctaLabel = 'Try Free', ctaHref
                 )}
               </AnimatePresence>
 
+              {/* Mobile Mock Tests */}
+              <Link href="/mock-tests" onClick={() => setMobileOpen(false)}
+                className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-bold text-slate-700 hover:bg-slate-50 transition-colors">
+                Mock Tests
+                <span className="px-2 py-0.5 bg-indigo-100 text-indigo-700 text-[10px] font-black rounded-full uppercase tracking-wide">New</span>
+              </Link>
+
               {/* Mobile Blog */}
               <Link href="/blog" onClick={() => setMobileOpen(false)}
                 className="w-full flex items-center px-3 py-2.5 rounded-xl text-sm font-bold text-slate-700 hover:bg-slate-50 transition-colors">
@@ -228,10 +258,19 @@ export const SiteNav: React.FC<SiteNavProps> = ({ ctaLabel = 'Try Free', ctaHref
                   className="w-full py-2.5 text-center text-sm font-bold text-slate-600 hover:text-indigo-600 transition-colors">
                   Log in
                 </Link>
-                <Link href={ctaHref} onClick={() => setMobileOpen(false)}
-                  className="w-full py-3 text-center bg-gradient-to-r from-indigo-600 to-violet-600 text-white font-bold text-sm rounded-xl">
-                  {ctaLabel}
-                </Link>
+                {onCtaClick ? (
+                  <button
+                    onClick={() => { setMobileOpen(false); onCtaClick(); }}
+                    className="w-full py-3 text-center bg-gradient-to-r from-indigo-600 to-violet-600 text-white font-bold text-sm rounded-xl"
+                  >
+                    {ctaLabel}
+                  </button>
+                ) : (
+                  <Link href={ctaHref} onClick={() => setMobileOpen(false)}
+                    className="w-full py-3 text-center bg-gradient-to-r from-indigo-600 to-violet-600 text-white font-bold text-sm rounded-xl">
+                    {ctaLabel}
+                  </Link>
+                )}
               </div>
             </div>
           </motion.div>
