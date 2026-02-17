@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import SubjectPageClient from './SubjectPageClient';
-import { SUBJECTS, UK_CITIES } from '@/components/SiteNav';
+import { SUBJECTS, UK_CITIES } from '@/lib/siteData';
 
 interface Props { params: { subject: string } }
 
